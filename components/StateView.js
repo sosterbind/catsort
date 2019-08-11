@@ -54,12 +54,20 @@ const renderPagination = (index, total, context) => {
   );
 };
 
-
 export default class StateView extends Component {
   constructor(props) {
     super(props);
-
+    let prefix =
+      "https://raw.githubusercontent.com/sosterbind/catsort/master/assets/images";
+    let abc = `${prefix}/IMG_4621.JPG`;
     let images = [
+      {
+        views: 3,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url:
+          `${prefix}/welcome.png`
+      },
       {
         views: 3,
         rightSwipe: 0,
@@ -87,26 +95,34 @@ export default class StateView extends Component {
         leftSwipe: 0,
         url:
           "https://user-images.githubusercontent.com/34967988/62828309-e6a93d80-bbb0-11e9-8db6-ee07eb9b7be1.jpg"
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url:
+          `${prefix}/IMG_4621.JPG`
       }
-    ]
+    ];
 
-    let lastIndex = images.length - 1
+    let lastIndex = images.length - 1;
 
     this.state = {
       images: images,
       currIdx: 0,
-      prevIdx: lastIndex,
-    
+      prevIdx: lastIndex
     };
-
   }
 
+  handleSwipe = index => {
+    let newImages = [...this.state.images];
+    let direction = this.getDirection(
+      index,
+      this.state.currIdx,
+      this.state.images.length
+    );
 
-  handleSwipe = (index) => {
-   let newImages = [...this.state.images]
-   let direction = this.getDirection(index, this.state.currIdx, this.state.images.length)
-
-       if (direction === "left") {
+    if (direction === "left") {
       newImages[index] = {
         ...newImages[index],
         views: newImages[index].views + 1,
@@ -119,50 +135,43 @@ export default class StateView extends Component {
         views: newImages[index].views + 1,
         hotRating: newImages[index].hotRating + 1,
         rightSwipe: newImages[index].rightSwipe + 1
+      };
     }
-  }
 
-  this.setState({
-     ...this.state,
-     images: [...newImages]
-   })
-   
-  }
+    this.setState({
+      ...this.state,
+      images: [...newImages]
+    });
+  };
 
   getDirection = (currIdx, prevIdx, arrayLength) => {
-    let lastIndex = arrayLength - 1
-    if (prevIdx === lastIndex && currIdx === 0 ){
-      console.log("loop, left")
-      return "left"
-    } else if (prevIdx === 0 && currIdx === lastIndex){
-      console.log("right")
-      return "right"
-    }
-    else if (prevIdx < currIdx) {
-      console.log("left")
-      return "left"
+    let lastIndex = arrayLength - 1;
+    if (prevIdx === lastIndex && currIdx === 0) {
+      console.log("loop, left");
+      return "left";
+    } else if (prevIdx === 0 && currIdx === lastIndex) {
+      console.log("right");
+      return "right";
+    } else if (prevIdx < currIdx) {
+      console.log("left");
+      return "left";
     } else {
-      console.log("right")
-      return "right"
+      console.log("right");
+      return "right";
     }
-  }
+  };
 
-  getViews = (index) => {
-    return this.state.images[index].views
-    
-  }
+  getViews = index => {
+    return this.state.images[index].views;
+  };
 
   getHotness = index => {
-    let left = this.state.images[index].leftSwipe
-    let right = this.state.images[index].rightSwipe
-    return 100 - left + right
- 
-  }
-
-  
+    let left = this.state.images[index].leftSwipe;
+    let right = this.state.images[index].rightSwipe;
+    return 100 - left + right;
+  };
 
   render() {
-    
     return (
       <Swiper
         style={styles.wrapper}
@@ -174,10 +183,14 @@ export default class StateView extends Component {
           <View key={index} style={styles.slide}>
             <Image style={styles.image} source={{ uri: image.url }} />
             <View style={styles.textWrapper}>
-              <Text style={styles.viewsText}>👀 Views:{this.getViews(index)}</Text>
+              <Text style={styles.viewsText}>
+                👀 Views:{this.getViews(index)}
+              </Text>
             </View>
             <View style={styles.textWrapper}>
-              <Text style={styles.hotText}>🔥Hotness:{this.getHotness(index)}</Text>
+              <Text style={styles.hotText}>
+                🔥Hotness:{this.getHotness(index)}
+              </Text>
             </View>
           </View>
         ))}
