@@ -48,7 +48,7 @@ const renderPagination = (index, total, context) => {
   return (
     <View style={styles.paginationStyle}>
       <Text style={{ color: "grey" }}>
-        <Text style={styles.paginationText}>{index + 1}</Text>/{total}
+        {/* <Text style={styles.paginationText}>{index + 1}</Text>/{total} */}
       </Text>
     </View>
   );
@@ -186,20 +186,16 @@ export default class StateView extends Component {
 
   handleSwipe = index => {
     let newImages = [...this.state.images];
-    let prev = this.state.currIdx
-    let newCurIdx = index
-    let direction = this.getDirection(
-      index,
-      prev,
-      this.state.images.length
-    );
-    console.log(`prev: ${prev}\tindex: ${index}\tdirection: ${direction}`)
+    let prev = this.state.currIdx;
+    let newCurIdx = index;
+    let direction = this.getDirection(index, prev, this.state.images.length);
+    console.log(`prev: ${prev}\tindex: ${index}\tdirection: ${direction}`);
     // update previous image's swipes
     newImages[index] = {
       ...newImages[index],
       views: newImages[index].views + 1
-    }
-    
+    };
+
     if (direction === "left") {
       newImages[prev] = {
         ...newImages[prev],
@@ -212,8 +208,6 @@ export default class StateView extends Component {
       };
     }
 
-    
-
     this.setState({
       ...this.state,
       images: [...newImages],
@@ -221,6 +215,7 @@ export default class StateView extends Component {
       prevIdx: prev
     });
   };
+  homeView = () => {};
 
   getDirection = (currIdx, prevIdx, arrayLength) => {
     let lastIndex = arrayLength - 1;
@@ -249,6 +244,23 @@ export default class StateView extends Component {
     return 100 - left + right;
   };
 
+  getHotnessText(index) {
+    if (index === 0) {
+      return " "
+    } else {
+      let hotness = this.getHotness(index)
+      return `🔥Hotness:${hotness}`
+    }
+  }
+
+  getViewsText(index) {
+    if (index === 0) {
+      return " "
+    } else {
+      let views = this.getViews(index)
+      return `👀 Views:${views}`
+    }
+  }
   render() {
     return (
       <Swiper
@@ -257,14 +269,32 @@ export default class StateView extends Component {
         loop={true}
         onIndexChanged={this.handleSwipe}
       >
-         {this.state.images.map((image, index) => (
+        {this.state.images.map((image, index) => (
+
+
+          // {index === 0 ? (<Image style={styles.image} source={{ uri: image.url }} />
+          //   <View style={styles.textWrapper}>
+          //     <Text style={styles.viewsText}>Welcome</Text>
+          //   </View>):(  <View key={index} style={styles.slide}>
+          //   <Image style={styles.image} source={{ uri: image.url }} />
+          //   <View style={styles.textWrapper}>
+          //     <Text style={styles.viewsText}>👀 Views:{this.getViews(index)}</Text>
+          //   </View>
+          //   <View style={styles.textWrapper}>
+          //     <Text style={styles.hotText}>🔥Hotness:{this.getHotness(index)}</Text>
+          //   </View>
+          // </View>)}
           <View key={index} style={styles.slide}>
             <Image style={styles.image} source={{ uri: image.url }} />
             <View style={styles.textWrapper}>
-              <Text style={styles.viewsText}>👀 Views:{this.getViews(index)}</Text>
+              <Text style={styles.viewsText}>
+                {this.getViewsText(index)}
+              </Text>
             </View>
             <View style={styles.textWrapper}>
-              <Text style={styles.hotText}>🔥Hotness:{this.getHotness(index)}</Text>
+              <Text style={styles.hotText}>
+                {this.getHotnessText(index)}
+              </Text>
             </View>
           </View>
         ))}
