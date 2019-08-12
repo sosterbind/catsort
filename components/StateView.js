@@ -65,8 +65,7 @@ export default class StateView extends Component {
         views: 3,
         rightSwipe: 0,
         leftSwipe: 0,
-        url:
-          `${prefix}/welcome.png`
+        url: `${prefix}/welcome.png`
       },
       {
         views: 3,
@@ -100,8 +99,49 @@ export default class StateView extends Component {
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
-        url:
-          `${prefix}/IMG_4621.JPG`
+        url: `${prefix}/apple.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/box.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/double.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/garden.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/glasses.jpg`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/pug.jpg`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/selfie.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/IMG_4621.JPG`
       }
     ];
 
@@ -179,18 +219,14 @@ export default class StateView extends Component {
         loop={true}
         onIndexChanged={this.handleSwipe}
       >
-        {this.state.images.map((image, index) => (
+         {this.state.images.map((image, index) => (
           <View key={index} style={styles.slide}>
             <Image style={styles.image} source={{ uri: image.url }} />
             <View style={styles.textWrapper}>
-              <Text style={styles.viewsText}>
-                👀 Views:{this.getViews(index)}
-              </Text>
+              <Text style={styles.viewsText}>👀 Views:{this.getViews(index)}</Text>
             </View>
             <View style={styles.textWrapper}>
-              <Text style={styles.hotText}>
-                🔥Hotness:{this.getHotness(index)}
-              </Text>
+              <Text style={styles.hotText}>🔥Hotness:{this.getHotness(index)}</Text>
             </View>
           </View>
         ))}
