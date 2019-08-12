@@ -141,7 +141,37 @@ export default class StateView extends Component {
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
-        url: `${prefix}/IMG_4621.JPG`
+        url: `${prefix}/1.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/2.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/3.JPG`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/4.jpeg`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/5.jpeg`
+      },
+      {
+        views: 0,
+        rightSwipe: 0,
+        leftSwipe: 0,
+        url: `${prefix}/6.jpeg`
       }
     ];
 
