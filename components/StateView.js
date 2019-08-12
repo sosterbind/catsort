@@ -74,15 +74,15 @@ export default class StateView extends Component {
         url: `${prefix}/welcome.png`
       },
       {
-        name: 'Arugula',
-        views: 3,
+        name: 'Rug',
+        views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url:
           "https://user-images.githubusercontent.com/34967988/62828293-78fd1180-bbb0-11e9-97e3-c93a692d8eaa.jpg"
       },
       {
-        name: 'Rug',
+        name: 'Arugula',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
