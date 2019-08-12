@@ -156,31 +156,39 @@ export default class StateView extends Component {
 
   handleSwipe = index => {
     let newImages = [...this.state.images];
+    let prev = this.state.currIdx
+    let newCurIdx = index
     let direction = this.getDirection(
       index,
-      this.state.currIdx,
+      prev,
       this.state.images.length
     );
-
+    console.log(`prev: ${prev}\tindex: ${index}\tdirection: ${direction}`)
+    // update previous image's swipes
+    newImages[index] = {
+      ...newImages[index],
+      views: newImages[index].views + 1
+    }
+    
     if (direction === "left") {
-      newImages[index] = {
-        ...newImages[index],
-        views: newImages[index].views + 1,
-        hotRating: newImages[index].hotRating + 1,
-        leftSwipe: newImages[index].leftSwipe + 1
+      newImages[prev] = {
+        ...newImages[prev],
+        leftSwipe: newImages[prev].leftSwipe + 1
       };
     } else {
-      newImages[index] = {
-        ...newImages[index],
-        views: newImages[index].views + 1,
-        hotRating: newImages[index].hotRating + 1,
-        rightSwipe: newImages[index].rightSwipe + 1
+      newImages[prev] = {
+        ...newImages[prev],
+        rightSwipe: newImages[prev].rightSwipe + 1
       };
     }
 
+    
+
     this.setState({
       ...this.state,
-      images: [...newImages]
+      images: [...newImages],
+      currIdx: newCurIdx,
+      prevIdx: prev
     });
   };
 
