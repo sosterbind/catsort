@@ -37,6 +37,11 @@ const styles = {
     color: "grey",
     fontSize: 30
   },
+  nameText: {
+    color: "black",
+    fontSize: 30,
+    fontWeight: "bold"
+  },
   textWrapper: {
     alignItems: "center",
     justifyContent: "center",
@@ -62,12 +67,14 @@ export default class StateView extends Component {
     let abc = `${prefix}/IMG_4621.JPG`;
     let images = [
       {
+        name: '',
         views: 3,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/welcome.png`
       },
       {
+        name: 'Arugula',
         views: 3,
         rightSwipe: 0,
         leftSwipe: 0,
@@ -75,6 +82,7 @@ export default class StateView extends Component {
           "https://user-images.githubusercontent.com/34967988/62828293-78fd1180-bbb0-11e9-97e3-c93a692d8eaa.jpg"
       },
       {
+        name: 'Rug',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
@@ -82,6 +90,7 @@ export default class StateView extends Component {
           "https://user-images.githubusercontent.com/34967988/62828312-0e98a100-bbb1-11e9-87a6-b76251b55baa.JPG"
       },
       {
+        name: 'Rugie',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
@@ -89,6 +98,7 @@ export default class StateView extends Component {
           "https://user-images.githubusercontent.com/34967988/62828301-9c27c100-bbb0-11e9-91e5-e2cc165e8d12.jpg"
       },
       {
+        name: 'Arugula',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
@@ -96,78 +106,91 @@ export default class StateView extends Component {
           "https://user-images.githubusercontent.com/34967988/62828309-e6a93d80-bbb0-11e9-8db6-ee07eb9b7be1.jpg"
       },
       {
+        name: 'Hamilton',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/apple.JPG`
       },
       {
+        name: 'Raleigh',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/box.JPG`
       },
       {
+        name: 'Deondre',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/double.JPG`
       },
       {
+        name: 'Trudie',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/garden.JPG`
       },
       {
+        name: 'Destany',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/glasses.jpg`
       },
       {
+        name: 'Elisabeth',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/pug.jpg`
       },
       {
+        name: 'Kyler',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/selfie.JPG`
       },
       {
+        name: 'Retta',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/1.JPG`
       },
       {
+        name: 'Ima',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/2.JPG`
       },
       {
+        name: 'Celestine',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/3.JPG`
       },
       {
+        name: 'Mohamed',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/4.jpeg`
       },
       {
+        name: 'Alberta',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
         url: `${prefix}/5.jpeg`
       },
       {
+        name: 'Earl',
         views: 0,
         rightSwipe: 0,
         leftSwipe: 0,
@@ -252,6 +275,7 @@ export default class StateView extends Component {
       return `🔥Hotness:${hotness}`
     }
   }
+ 
 
   getViewsText(index) {
     if (index === 0) {
@@ -270,22 +294,13 @@ export default class StateView extends Component {
         onIndexChanged={this.handleSwipe}
       >
         {this.state.images.map((image, index) => (
-
-
-          // {index === 0 ? (<Image style={styles.image} source={{ uri: image.url }} />
-          //   <View style={styles.textWrapper}>
-          //     <Text style={styles.viewsText}>Welcome</Text>
-          //   </View>):(  <View key={index} style={styles.slide}>
-          //   <Image style={styles.image} source={{ uri: image.url }} />
-          //   <View style={styles.textWrapper}>
-          //     <Text style={styles.viewsText}>👀 Views:{this.getViews(index)}</Text>
-          //   </View>
-          //   <View style={styles.textWrapper}>
-          //     <Text style={styles.hotText}>🔥Hotness:{this.getHotness(index)}</Text>
-          //   </View>
-          // </View>)}
           <View key={index} style={styles.slide}>
             <Image style={styles.image} source={{ uri: image.url }} />
+            <View style={styles.textWrapper}>
+              <Text style={styles.nameText}>
+                {this.state.images[index].name}
+              </Text>
+            </View>
             <View style={styles.textWrapper}>
               <Text style={styles.viewsText}>
                 {this.getViewsText(index)}
