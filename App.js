@@ -3,12 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   Dimensions,
-  Image
 } from "react-native";
 
-import StateView from "./components/StateView"
+import StateView from "./components/StateView";
 
 const renderInfo = (index, total, context) => {
   return (
@@ -21,59 +19,9 @@ const renderInfo = (index, total, context) => {
 };
 
 export default function App() {
-  // let image1 = "./assets/images/cute.jpg";
   return (
     <View style={styles.container}>
-      {/* <NumberView /> */}
       <StateView />
-      {/* <Swiper
-        renderPagination={renderInfo}
-        showsPagination={false}
-        style={styles.wrapper}
-        loop={true}
-      >
-        <View
-          style={styles.slide}
-          title={
-            <Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>
-          }
-        >
-          <Image
-            style={styles.image}
-            source={require("./assets/images/cute.jpg")}
-          />
-        </View>
-        <View
-          style={styles.slide}
-          title={
-            <Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>
-          }
-        >
-          <Image
-            style={styles.image}
-            source={require("./assets/images/flowerRug.jpg")}
-          />
-        </View>
-        <View
-          style={styles.slide}
-          title={
-            <Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>
-          }
-        >
-          <Image
-            style={styles.image}
-            source={require("./assets/images/thinking.jpg")}
-          />
-        </View>
-        <View
-          style={styles.slide}
-          title={
-            <Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>
-          }
-        >
-          <Text>hello</Text>
-        </View>
-      </Swiper> */}
     </View>
   );
 }
